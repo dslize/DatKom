@@ -2,9 +2,9 @@
 
 \title{Datenkommunikation und Informationssysteme, Übung 1}
 \author{
-    Otto Normal \\ 333333
+    Domenic Quirl \\ 354437
     \and
-    Max Muster \\ 222222
+    Julian Schakib \\ 353889
     \and 
     Daniel Schleiz \\ 356092
 }
@@ -52,13 +52,15 @@
 	\end{subexercise}
 
 	\begin{subexercise} \texttt{PROVIDERABORT.Indication}\\
-		  Dieses Dienstprimitiv wird beispielsweise aufgerufen, falls mitten im Notruf unerwarteterweise die Verbindung verloren geht. Es wird aufgerufen vom Pannenauto
+		Dieses Dienstprimitiv wird beispielsweise aufgerufen, falls mitten im Notruf unerwarteterweise die Verbindung verloren geht. Es wird aufgerufen vom Pannenauto
 		bzw. Leitstellensystem und verarbeitet vom Insassen bzw. Disponenten.
 	\end{subexercise}
 \end{exercise}
 
 \begin{exercise}{1.5}
-	
+	Man könnte dies realisieren, indem der Dienstanbieter des unbestätigten Dienstes im Falle einer fehlerhaften Übertragung ein Provider Abort auslöst, und außerdem eine
+	obere Schranke für die Dauer der Zustellung gibt. Somit wissen die Dienstnutzer, dass wenn keine PROVIDERABORT.Ind innerhalb der Zeitschranke ankam, dass die Zustellung
+	erfolgreich war.
 \end{exercise}
 
 \begin{exercise}{3.5}
