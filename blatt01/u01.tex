@@ -58,9 +58,9 @@
 \end{exercise}
 
 \begin{exercise}{1.5}
-	Man könnte dies realisieren, indem der Dienstanbieter des unbestätigten Dienstes im Falle einer fehlerhaften Übertragung ein Provider Abort auslöst, und außerdem eine
-	obere Schranke für die Dauer der Zustellung gibt. Somit wissen die Dienstnutzer, dass wenn keine PROVIDERABORT.Ind innerhalb der Zeitschranke ankam, dass die Zustellung
-	erfolgreich war.
+	Man könnte dies realisieren, indem der unbestätigte Dienst selbst wiederum im Sinne eines Schichtenmodells einen bestätigten Dienst für die Zustellung verwendet und die
+	Übertragung so lange wiederholt, bis er die Confirmation erhalten hat. Eine Confirmation an den Dienstnutzer vom unbestätigten Dienst wird nicht gegeben, die Zustellung
+	ist aber garantiert.\\
 \end{exercise}
 
 \begin{exercise}{3.5}
