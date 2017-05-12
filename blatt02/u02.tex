@@ -60,11 +60,38 @@
 
 \begin{exercise}{4.5}
 	\begin{subexercise}
-	
+		\begin{itemize}
+			\item Kanal 1:
+			\begin{itemize}
+				\item $B = 20kHz - 5kHz=15kHz$
+				\item $S/N=10^{3,1}\approx 1258,9$
+				\item $R_{ny}=2*B*ld(n)=30.000*ld(n)$, bei einem zweiwertigen Signal $R_{ny} = 30.000 Bit/s$
+				\item $R_{sh} = B*ld(1+S/N) \approx 15.000*ld(1+1258,9) \approx 154.486 Bit/s$
+				\item $R_{max}=min\{R_{ny},R_{sh}\}\approx min\{30.000*ld(n), 154.486\}$
+			\end{itemize}
+			\item Kanal 2:
+			\begin{itemize}
+				\item $B = 40kHz - 22kHz=18kHz$
+				\item $S/N=10^{2,5}\approx 316,23$
+				\item $R_{ny}=2*B*ld(n)=36.000*ld(n)$, bei einem zweiwertigen Signal $R_{ny} = 36.000 Bit/s$
+				\item $R_{sh} = B*ld(1+S/N) \approx 18.000*ld(1+316,23) \approx 149.569 Bit/s$
+				\item $R_{max}=min\{R_{ny},R_{sh}\}\approx min\{36.000*ld(n), 149.569\}$
+			\end{itemize}
+			\item Kanal 3:
+			\begin{itemize}
+				\item $B = 95kHz - 74kHz=21kHz$
+				\item $S/N=10^{2} = 100$
+				\item $R_{ny}=2*B*ld(n)=42.000*ld(n)$, bei einem zweiwertigen Signal $R_{ny} = 42.000 Bit/s$
+				\item $R_{sh} = B*ld(1+S/N) = 21.000*ld(1+100) \approx 139.822 Bit/s$
+				\item $R_{max}=min\{R_{ny},R_{sh}\}\approx min\{42.000*ld(n), 139.822\}$
+			\end{itemize}
+		\end{itemize}	
 	\end{subexercise}
 
 	\begin{subexercise}
+	Auf allen Kanälen liegt die durch 64-QAM theoretisch erreichbare Datenrate nach Nyquist oberhalb der maximalen Datenrate nach Shannon. Für Kanal 3 gilt dies zusätzlich auch für 16-QAM, da $42.000*ld(16)=168.000>139.822$. Kanal 3 kann also insgesamt maximal eine Datenrate von 139.822 Bit/s erreichen, mit 4-QAM sind es $42.000*ld(4)=84.000 Bit/s$. Kanal 2 kann hingegen 16-QAM in vollem Umfang nutzen, da $36.000*ld(16)=144.000<149.569$. Auf Kanal 2 kann also mittels 16-QAM eine Datenrate von 144.000 Bit/s erreicht werden. Kanal 1 erreicht aufgrund der geringeren Bandbreite nur $30.000*ld(16)=120.000 Bit/s$, was zwar ebenfalls unterhalb der 154.486 Bit/s nach Shannon liegt, aber langsamer ist als Kanal 2.
 	
+	Die maximale Datenrate erzielt also Kanal 2 bei der Verwendung von 16-QAM. Sie liegt bei 144.000 Bit/s.
 	\end{subexercise}
 \end{exercise}
 
