@@ -17,15 +17,46 @@
 \pointtable
 
 \begin{exercise}{1}
+	Zum einen teilt der leitende Verpackungsingenieur die Ergebnisse der Befragung sowohl den Assistenten als auch der Rechtsabteilung mit, obwohl lediglich
+	die Rechtsabteilung die unmittelbar darüber liegende Schicht wäre, die Assistenten befinden sich in der Schicht über der Rechtsabteilung. Da bei der vertikalen
+	Kommunikation eine Schicht "übersprungen" wird und der Verpackungsingenieur sich nicht nur mit der Rechtsabteilung in Verbindung setzt, widerspricht dies
+	dem \textit{ISO/OSI-Modell}. \\
+	Zum anderen möchten die Geschäftsführungen und Assistenten Dinge vor Ort mit den Konstrukteuren und dem Braumeister klären, wobei die Schicht der	
+	Rechtsabteilung übersprungen wird. Dies ist ebenfalls nicht konform mit dem \textit{ISO/OSI-Modell}. \\
 \end{exercise}
 
 \begin{exercise}{3}
 	\begin{subexercise}
-		
+		Als Kommunikationspartner lassen sich der Wähler, welcher den Wahlzettel ausfüllt, und der Wahlvorstand, welcher den Wahlzettel zählt, identifizieren. Folgende
+		Schichten der Kommunikation lassen sich dabei ausmachen (von "oben nach unten"):
+		\begin{itemize}
+		\item \textit{Bezirksschicht}, in welcher der Wahlzettel in der Urne für den Bezirk im blauen Umschlag liegt,
+		\item \textit{Wahlamtsschicht}, in welcher der Brief im roten Umschlag geöffnet wird
+		\item \textit{Postschicht}, in welcher der postale Versand des roten Umschlags stattfindet.
+		\end{itemize}
+		Es findet keine wirklich saubere Trennung der Schichten statt, da zum Beispiel der Wähler selbst seinen Wahlzettel mit PCIs versieht und direkt mit der Postschicht über
+		den SAP Briefkasten vertikal kommuniziert anstatt mit der darunter liegenden Bezirksschicht, während erst auf der anderen Seite die Schichten wirklich durchlaufen werden.
 	\end{subexercise}
 
 	\begin{subexercise}
-		  
+		Postschicht:
+		\begin{itemize}
+		\item \textit{PCI:} Aufdruck für die interne Verarbeitung auf der Schicht (geht nicht aus dem Text hervor)
+		\item \textit{SDU:} Roter Briefumschlag mit Inhalt
+		\item \textit{PDU:} Bedruckter Brief mit rotem Umschlag
+		\end{itemize}
+		Wahlamtsschicht:
+		\begin{itemize}
+		\item \textit{PCI:} Roter Umschlag (leer) und eidesstattliche Erklärung
+		\item \textit{SDU:} Blauer Umschlag mit Inhalt
+		\item \textit{PDU:} Geschlossener roter Umschlag mit Inhalt
+		\end{itemize}
+		Bezirksschicht:
+		\begin{itemize}
+		\item \textit{PCI:} Blauer Umschlag (leer)
+		\item \textit{SDU:} Wahlzettel
+		\item \textit{PDU:} Geschlossener blauer Umschlag mit Inhalt
+		\end{itemize}
 	\end{subexercise}
 \end{exercise}
 
