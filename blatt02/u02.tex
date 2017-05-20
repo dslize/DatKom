@@ -12,6 +12,8 @@
 \renewcommand{\Exercise}{Aufgabe}
 \date{Übungsgruppe 14}
 
+\usepackage{float}
+
 \begin{document}
 \maketitle
 \pointtable
@@ -63,15 +65,51 @@
 
 \begin{exercise}{5}
 	\begin{subexercise}
-	
+	NRZI-M (mit Pegeln 1 und -1):
+	\begin{figure}[H]
+		\centering
+  		\scalebox{.8}{\includegraphics{2_2nrzi-m.pdf}}
+	\end{figure}
+	Unipolar RZ:
+	\begin{figure}[H]
+		\centering
+  		\scalebox{.8}{\includegraphics{2_2unipolar-rz.pdf}}
+	\end{figure}
+	Manchester:
+	\begin{figure}[H]
+		\centering
+  		\scalebox{.8}{\includegraphics{2_2manchester.pdf}}
+	\end{figure}
+	Biphase-M:
+	\begin{figure}[H]
+		\centering
+  		\scalebox{.8}{\includegraphics{2_2biphase-m.pdf}}
+	\end{figure}
+	RZ:
+	\begin{figure}[H]
+		\centering
+  		\scalebox{.8}{\includegraphics{2_2rz.pdf}}
+	\end{figure}
+	NRZ-L:
+	\begin{figure}[H]
+		\centering
+  		\scalebox{.8}{\includegraphics{2_2nrz-l.pdf}}
+	\end{figure}\ \\
 	\end{subexercise}
 
 	\begin{subexercise}
-	
+	Mit 4B/5B Kodierung ergibt sich die Bitfolge 100111011010101 und die zu übertragende Signalfolge:
+	\begin{figure}[H]
+		\centering
+  		\scalebox{.8}{\includegraphics{2_2b.pdf}}
+	\end{figure}
 	\end{subexercise}
 
 	\begin{subexercise} 
-	
+		Im Basisbandverfahren wird das gesamte Frequenzspektrum des Mediums genutzt. Dies ist für Ethernet durchaus sinnvoll, da es meist in lokalen Netzen
+		eingesetzt wird, in welchen sich (relativ betrachtet) nicht so viele Kommunikationsteilnehmer befinden und es einfacher zu realisieren ist als ein Modulationsverfahren.\\
+		Modulationsverfahren ergeben wiederum für DSL Sinn, da man potenziell viele Teilnehmer hat und man mittels Modulation Kanäle realisieren kann, indem man nur
+		einen gewissen Teil der Bandbreite nutzt.
 	\end{subexercise}
 \end{exercise}
 
