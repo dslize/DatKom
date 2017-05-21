@@ -41,25 +41,46 @@
 
 \begin{exercise}{3}
 	\begin{subexercise}
-	
+	Es kommt überall zu Problemen, wo die gewählte Rahmenbegrenzung in den Nutzdaten vorkommt, da in diesem Fall Nutzdaten als Steuerungszeichen aufgefasst werden und vom Empfänger als Rahmenbegrenzung interpretiert werden können. In den gegebenen Nutzdaten tritt dies an den unterstrichenen Stellen auf:
+		1\underline{101 01}\ \underline{10 101}0 0101 001\underline{1 0101} 0011 1001
 	\end{subexercise}
 
 	\begin{subexercise}
-	
+	\begin{itemize}
+	\item[(i)] 1101 \textbf{0}011 01\textbf{0}0 1001 01\textbf{0}0 0110 1\textbf{0}01 0011 1001
+	\item[(ii)] 1\textbf{111 11}1\textbf{1 1111} 100\textbf{1 1111} 01\textbf{11 111}1 0011 1001
+	\end{itemize}
 	\end{subexercise}
 
 	\begin{subexercise} 
+		Strategie (i) stößt schnell an ihre Grenzen, sobald in den zu übertragenden Nutzdaten die Sequenz 1011 vorkommt. Diese würde dann zu 10101 ersetzt und das Flag wäre unerwünscht in den Daten enthalten.\\
 		
+		Auch Strategie (ii) kann einen solchen Fall verursachen, zum Beispiel bei der Übertragung von 1010 0101 1101, welches dann zu 11111 0101 1101 ersetzt würde. Dies sollte allerdings seltener auftreten als bei (i), da die Fehler verursachende Sequenz spezifischer ist. Beide Strategien verursachen bei einer Ersetzung dieselbe Verlängerung der Daten um 1 Bit, auch das sollte aber bei Strategie (ii) weniger häufig passieren, da die Sequenz, welche hier ersetzt wird, länger ist.\\
+		
+		Insgesamt ist also Strategie (ii) als weniger fehleranfällig und weniger zusätzliche Daten produzierend vorzuziehen.
 	\end{subexercise}
 \end{exercise}
 
 \begin{exercise}{1}
+	Ein Paket der Länge 40 Byte beinhaltet $40*8=320$ Bit und ist nur dann fehlerfrei, wenn alle Bits fehlerfrei sind. Die Wahrscheinlichkeit für ein Bit, fehlerfrei zu sein, ist $1-10^{-4}=0.9999$. Die Wahrscheinlichkeit, dass alle Bits fehlerfrei sind, ist demnach $0,9999^{320}\approx 0.96850503236$. Die Wahrscheinlichkeit für ein Paket, fehlerhaft zu sein, ist dementsprechend $1-0.96850503236\approx 0.03149496764\approx 3.1*10^{-2}$.
 	
-\end{exercise}
+	Analog ergibt sich für ein Paket der Länge 1400 Byte $1400*8=11200$, $0.9999^{11200}\approx 0.32626152224$ und damit eine PER von $1-0.32626152224\approx 0.67373847776\approx
+6.7*10^{-1}$.\end{exercise}
 
 \begin{exercise}{2.5}
 	\begin{subexercise}
-		
+	Es ergibt sich
+		\begin{equation*}
+		\begin{split}
+		&111010 \quad 0 \\
+		&010011 \quad 1 \\
+		&011101 \quad 0 \\
+		&110111 \quad 1 \\
+		&011001 \quad 1 \\
+		& \\
+		&011010
+		\end{split}
+		\end{equation*}
 	\end{subexercise}
 
 	\begin{subexercise}
@@ -71,7 +92,7 @@
 	\begin{subexercise}
 	
 	\end{subexercise}
-
+	
 	\begin{subexercise}
 	
 	\end{subexercise}
