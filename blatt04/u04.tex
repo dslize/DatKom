@@ -1,0 +1,85 @@
+\documentclass{../exercisesheet}
+
+\title{Datenkommunikation und Informationssysteme, Übung 4}
+\author{
+    Domenic Quirl \\ 354437
+    \and
+    Julian Schakib \\ 353889
+    \and 
+    Daniel Schleiz \\ 356092
+}
+
+\renewcommand{\Exercise}{Aufgabe}
+\date{Übungsgruppe 14}
+
+\usepackage{float}
+%\usepackage{siunitx}
+\usepackage{color}
+
+\begin{document}
+\maketitle
+\pointtable
+
+
+\begin{exercise}{1}
+	Es ergeben sich folgende Hamming Codes (eingefügte Paritätsbits rot markiert):
+	\begin{itemize}
+	\item \textcolor{red}{01}1\textcolor{red}{1}000\textcolor{red}{1}0101001\textcolor{red}{1}00010
+	\item \textcolor{red}{11}0\textcolor{red}{1}111\textcolor{red}{0}0110101\textcolor{red}{1}10011
+	\end{itemize}
+\end{exercise}
+
+\begin{exercise}{4}
+\begin{subexercise}
+	Zur Berechnung der maximalen Nutzdatenrate soll die Übertragung eines Pakets mit der maximalen Menge an Nutzdaten pro Rahmen, also 343 Byte, betrachtet werde. Gegeben ist
+	außerdem die maximale Datenrate von 1000 Bit/s und eine Latenz von 0,003s. \\
+	Mit dem Header von 16 Byte werden also $343+16=359$ Byte $= 2872$ Bit von $A$ nach $B$ übertragen. Dazu werden $\frac{2872 \text{Bit}}{1000 \text{Bit/s}} +$ 0,003s 
+	= 2,875s benötigt. Anschließend wird, da keine Bitfehler passieren, ein ACK Rahmen von 16 Byte = 128 Bit in $\frac{128 \text{Bit}}{1000 \text{Bit/s}} +$ 0,003s = 0,131s von
+	$B$ nach $A$ übertragen. Insgesamt benötigte man also 2,875 + 0,131 = 3,006s für die Übertragung des Pakets und die Bestätigung, es ergibt sich also die maximale
+	Nutzdatenrate von $\frac{343\text{Bit}}{\text{3,006s}}\approx$ 114 Bit/s = 0,114 Mbit/s.
+\end{subexercise}
+\begin{subexercise}
+	Als direkte Maßnahme könnte man die maximale Größe von Nutzdaten pro Rahmen vergrößern. Dies würde zu einer Steigerung der (maximalen) Nutzdatenrate führen, da 
+	insgesamt weniger Pakete verschickt werden müssten bei großen Datenmengen und somit weniger Quittierungen durch das Zurücksenden eines ACK Rahmens stattfinden
+	würden. Für ein Byte Nutzdaten muss dann also im Schnitt weniger auf ein ACK "gewartet" werden.
+\end{subexercise}
+\begin{subexercise}
+	
+\end{subexercise}
+\end{exercise}
+
+\begin{exercise}{2.5}
+\begin{subexercise}
+	
+\end{subexercise}
+\begin{subexercise}
+	
+\end{subexercise}
+\end{exercise}
+
+\begin{exercise}{1.5}
+\begin{subexercise}
+	
+\end{subexercise}
+\begin{subexercise}
+	
+\end{subexercise}
+\begin{subexercise}
+	
+\end{subexercise}
+\end{exercise}
+
+\begin{exercise}{6}
+\begin{subexercise}
+	
+\end{subexercise}
+\begin{subexercise}
+	
+\end{subexercise}
+\begin{subexercise}
+	
+\end{subexercise}
+\end{exercise}
+
+
+\end{document}
