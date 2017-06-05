@@ -44,13 +44,22 @@
 	würden. Für ein Byte Nutzdaten muss dann also im Schnitt weniger auf ein ACK "gewartet" werden.
 \end{subexercise}
 \begin{subexercise}
-	
+	Gehe bei einer erfolgreichen Übertragung eines Pakets von der Nutzdatenrate von (a) aus, d.h. 0,114 Mbit/s. Eine Übertragung schlägt fehl, wenn entweder der Rahmen mit
+	Nutzdaten und Header (359 Byte) einen Bitfehler hat, oder falls das darauf folgende ACK (16 Byte) einen Bitfehler hat und somit als NACK erkannt wird. Die Wahrscheinlichkeit
+	für ein Bit, fehlerfrei zu sein, ist $1-10^{-4}=0.9999$. Die Wahrscheinlichkeit, dass alle der 359 + 16 Byte = 375 Byte = 3000 Bit fehlerfrei sind, liegt demnach bei
+	$0.9999^{3000}\approx 0.74$. Dementsprechend liegt die Wahrscheinlichkeit eines Fehlers bei der Übertragung bei $1-0.9999^{3000}\approx 0.26$. Im Falle eines Fehlers
+	müssen erneut der Rahmen mit Nutzdaten und Header und das anschließende ACK gesendet werden, also die doppelte Datenmenge. Somit halbiert sich im Fehlerfall
+	die Nutzdatenrate auf 0,057 Mbit/s. Die mittlere Nutzdatenrate liegt somit bei $0.9999^{3000} \cdot 0,114 + (1-0.9999^{3000}) \cdot 0.057 \approx 0.099$ Mbit/s.
+\end{subexercise}
+\begin{subexercise}
+	Da die Aufgabenstellung suggeriert, dass beliebig viele empfangene Rahmen auf einmal verwaltet werden können, bietet es sich an, \textit{Selective Repeat} zu verwenden,
+	da im Vergleich zu Go-Back-N die auf einen fehlerhaften Rahmen folgenden Rahmen nicht verworfen werden und erneut übertragen werden müssen.
 \end{subexercise}
 \end{exercise}
 
 \begin{exercise}{2.5}
 \begin{subexercise}
-	
+
 \end{subexercise}
 \begin{subexercise}
 	
@@ -71,12 +80,52 @@
 
 \begin{exercise}{6}
 \begin{subexercise}
-	
+\textbf{(i)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+	%Zwischen $S_1$ und $S_2$ liegt eine Latenz von $\frac{90}{3 \cdot 10^8}= 3\cdot 10^{-7}$s vor, zwischen $S_2$ bzw. $S_1$ und $D$ dementsprechend $1.5 \cdot 10^{-7}$s,
+	%da nur die halbe Strecke vorliegt.
+	Bei einer Datenrate von 10MBit/s sendet $S_1$ die 1400 Byte =1.4 MByte = 11.2 MBit in $\frac{11.2}{10}=1.12$s, also von $t_1=1$s bis $t_2=2.12$s. Da $S_2$ ebenfalls nur an
+	$D$ senden möchte, kommt es nur zur Kollision, falls sich Rahmen im Punkt $D$ überlagern. Weil $S_1$ und $S_2$ genau gleich entfernt von $D$ sind und die gleiche Menge an Daten
+ 	senden möchten, kommt es zur Kollision, falls $S_2$ im gleichen Sendezeitraum wie $S_1$ oder früher senden möchte, d.h. von $t=0$s bis $t_2$. (Die Latenzen gleichen sich aus, da
+	gleiche Entfernung. Außerdem ist $S_2$ noch nicht fertig bei 1s, wenn es bei 0s beginnt, also ab da auch Kollisionen.)\\
+\end{adjustwidth}
+\textbf{(ii)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+	$S_1$ möchte bei $t=1000ms$ senden, jedoch beginnt erst bei $t_1=1000.5ms$ ein Zeitslot, da $1.5 \cdot 667 = 1000.5$. Somit würde $S_1$ ab $t_1$ senden und alle
+	darauf folgenden Slots belegen, bis die 1400 Byte übertragen sind. Aufgrund gleicher physikalischer Bedingungen wie in (a) sendet $S_1$ 1.12s lang. Der letzte Slot,
+	den $S_1$ dabei belegt, liegt bei $t_2=2119.5$ms, da $S_1$ beim Zeitpunkt $1000.5+1120=2120.5$ms fertig mit Senden ist . (Die letzten 0.5ms des Slots bleiben ungenutzt.) Da
+	wieder $S_2$ Daten mit gleicher Größe senden möchte und beide die gleiche Latenz zu $D$ aufweisen, kommt es zur Kollision, falls $S_2$ einen Sendewunsch 
+	ab $t=0$s bis
+	%nach 999ms (wird diesem Slot gerade nicht mehr zugeteilt, erster Zeitslot wäre dann bei $t_1$) 
+	 vor bzw. bei $t_2$ hat, also dem letzten von $S_1$ belegten Slot.\\ 
+\end{adjustwidth}
+\textbf{(iii)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+	Es kommt CSMA/CD zum Einsatz. Zwischen $S_1$ und $S_2$ liegt eine Latenz von $\frac{90}{2 \cdot 10^8}= 4.5\cdot 10^{-7}$s vor. Bei CSMA kann eine Station nur senden, 
+	falls die Station auf der Leitung gerade nichts hört. Da eine Latenz zwischen $S_1$ und $S_2$ herrscht, kommt es zur Kollision, falls $S_2$ anfängt zu senden, bevor
+	das Signal durch die Latenz verzögert bei $S_2$ ankommt bzw. $S_2$ anfängt zu senden, sodass durch die Latenz das Signal bei $S_1$ bei 1s noch nicht angekommen ist.
+	Es folgt also, dass es zur Kollision kommt, falls $S_2$ von $1-4.5\cdot 10^{-7}$s bis $1+4.5\cdot 10^{-7}$s senden möchte. Möchte $S_2$ davor oder danach senden, so
+	wird im ersten Fall $S_!$ das Senden verboten und es kommt nicht zur Kollision bzw. $S_2$ wird es im zweiten Fall verboten zu Senden.\\
+\end{adjustwidth}
+\textbf{(iv)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+	Es kann zu keiner Kollision kommen, da es sich bei Token Ring um ein geregeltes Verfahren handelt, bei dem nur gesendet werden kann, falls ein Frei-Token ankommt, 
+	welches dann das Token belegt. $S_2$ muss also warten, bis wieder ein Frei-Token ankommt.
+\end{adjustwidth}
 \end{subexercise}
 \begin{subexercise}
-	
+	Auf die 90m betrachtet, also die maximale Ausbreitung, darf eine Sendung nicht vorüber sein, solange das Round Trip Delay noch nicht abgelaufen ist, also das Doppelte
+	der Latenz von $4.5\cdot 10^{-7}$s. Der Round Trip Delay beträgt also $9\cdot 10^{-7}$s. Während dieser Zeit können mit 10 MBit/s = 1.25 MByte/s Datenrate Daten der
+	Größe $9\cdot 10^{-7}s \cdot 10 \cdot 10^6$ Byte/s = 9 Byte übertragen werden. Somit muss die minimale Rahmenlänge 9 Byte betragen.\\
+	Die minimale Rahmenlänge ist notwendig, damit zuverlässig Kollisionen detektiert werden können. Bei einer Kollision wird bei CSMA/CD ein Jamming Signal ausgesendet. Damit
+	der Sender weiß, dass er mit dem Jamming Signal gemeint ist, darf die Sendung noch nicht beendet sein.
 \end{subexercise}
 \begin{subexercise}
+	Einerseits ist steigt bei großer Ausdehnung die \textit{minimale Rahmengröße} an, da sich bei größerer Ausdehnung auch der Round Trip Delay erhöht. Möchte man nun
+	eher kleine Nutzdaten zwischen Stationen schicken, so schickt man recht viele redundante Daten, da gepaddet werden muss und man belastet die Leitung dadurch unnötig, ganz
+	abgesehen von der geringeren Nutzdatenrate durch das Aufblähen der Rahmen.\\
+	Außerdem hat man bei großer Ausdehnung, falls eine hohe Last herrscht, eine \textit{geringe Effizienz}, da die Leitung dann oft "belegt ist" und die Kommunikation zwischen
+	nahen Stationen, welche schon längst fertig sind, trotzdem weit weg gelegene Stationen lahm legen können.
 	
 \end{subexercise}
 \end{exercise}
