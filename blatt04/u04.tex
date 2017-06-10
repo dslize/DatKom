@@ -35,7 +35,7 @@
 	außerdem die maximale Datenrate von 1000 Bit/s und eine Latenz von 0,003s. \\
 	Mit dem Header von 16 Byte werden also $343+16=359$ Byte $= 2872$ Bit von $A$ nach $B$ übertragen. Dazu werden $\frac{2872 \text{Bit}}{1000 \text{Bit/s}} +$ 0,003s 
 	= 2,875s benötigt. Anschließend wird, da keine Bitfehler passieren, ein ACK Rahmen von 16 Byte = 128 Bit in $\frac{128 \text{Bit}}{1000 \text{Bit/s}} +$ 0,003s = 0,131s von
-	$B$ nach $A$ übertragen. Insgesamt benötigte man also 2,875 + 0,131 = 3,006s für die Übertragung des Pakets und die Bestätigung, es ergibt sich also die maximale
+	$B$ nach $A$ übertragen. Insgesamt benötigte man also 2,875 + 0,131 = 3,006s für die Übertragung des Pakets und der Bestätigung, es ergibt sich also die maximale
 	Nutzdatenrate von $\frac{343\text{Bit}}{\text{3,006s}}\approx$ 114 Bit/s = 0,114 Mbit/s.
 \end{subexercise}
 \begin{subexercise}
@@ -59,10 +59,24 @@
 
 \begin{exercise}{2.5}
 \begin{subexercise}
+Für eine Auslastung von 100\% muss die Nutzdatenrate der maximal möglichen Datenrate entsprechen, also 30 Mbit/s betragen. Da $30\ \text{Mbit/s} = 30000000\ \text{Bit/s} = 3750000\ \text{Byte/s}$ entspricht dies dem Senden eines Rahmens alle $\frac{8000\ \text{Byte}}{3750000\ \text{Byte/s}} = 2.1\bar{3} * 10^{-3}$s bzw. dem Senden von 468.75 Rahmen/s. Die Latenz von 250ms entspricht demnach 117.1875 gesendeten Rahmen, die doppelte Latenz also 234.375 Rahmen.
 
+Das bedeutet, dass ein ACK für den ersten gesendeten Rahmen, wenn der Sender kontinuierlich mit der gewünschten Datenrate weiter sendet, frühestens wieder den Sender erreicht, wenn dieser bereits ca. 234 weitere Rahmen gesendet hat. Dies ist natürlich nur möglich, wenn die Fenstergröße mindestens 235 beträgt, da der Sender sonst im Senden innehalten und zunächst auf das ACK für seinen ersten Rahmen warten müsste, um wieder weitere Rahmen senden zu können. Dann würde aber eine geringere als die gewünschte Auslastung erreicht, sodass insgesamt das Fenster mindestens diese Größe von 235 haben muss.
 \end{subexercise}
 \begin{subexercise}
+	Eine Auslastung von 10\% entspricht einer Nutzdatenrate von 3 Mbit/s. Unter Vernachlässigung der Sendezeit des Senders ergäbe sich folgendes Bild:
 	
+	Die Gesamtzeit, bis der Sender ein ACK für einen gesendeten Rahmen erhalten kann (Latenz + Verarbeitungszeit + Latenz), beträgt 750ms. Wenn wir annehmen, dass in dieser Zeit genau so viele Rahmen verschickt werden sollen, wie die Fenstergröße erlaubt, um die benötigte Rahmengröße zu minimieren, ergibt das eine Übertragungsrate von 200 Rahmen/s. Um mit diesen Rahmen die gewünschten 3 Mbit zu übertragen, muss jeder Rahmen $\frac{3\ \text{Mbit/s}}{200\ \text{Rahmen/s}} = 15$ KBit/Rahmen = 1875 Byte/Rahmen enthalten.
+	\\
+	
+	Mit Sendezeit des Senders ist diese, wenn $R$ unsere Mindestgröße der Rahmen beschreibt, $t_s = \frac{R}{3\ \text{Mbit/s}}$. Daraus ergibt sich die maximale Rate übertragbarer Rahmen pro Sekunde unter Berücksichtigung der Fenstergröße zu $S = \frac{150}{t_s + 0.75 \text{s}}$ Rahmen/s. Um so die gewünschte Auslastung zu erzielen, muss die Rahmengröße mindestens
+	\begin{equation*}
+	\begin{split}
+	&R = \frac{3\ \text{Mbit/s}}{S} = \frac{3\ \text{Mbit/s} * t_s + 0.75 \text{s}}{150} = \frac{R + 2.25 \text{Mbit}}{150} = \frac{R}{150} + 15\ \text{Kbit} \\
+	\leftrightarrow &R \approx 15.1007\ \text{Kbit}
+	\end{split}
+	\end{equation*}
+betragen (dies ergibt $S = 198.\bar{6}$ Rahmen/s).
 \end{subexercise}
 \end{exercise}
 
@@ -105,7 +119,7 @@
 	falls die Station auf der Leitung gerade nichts hört. Da eine Latenz zwischen $S_1$ und $S_2$ herrscht, kommt es zur Kollision, falls $S_2$ anfängt zu senden, bevor
 	das Signal durch die Latenz verzögert bei $S_2$ ankommt bzw. $S_2$ anfängt zu senden, sodass durch die Latenz das Signal bei $S_1$ bei 1s noch nicht angekommen ist.
 	Es folgt also, dass es zur Kollision kommt, falls $S_2$ von $1-4.5\cdot 10^{-7}$s bis $1+4.5\cdot 10^{-7}$s senden möchte. Möchte $S_2$ davor oder danach senden, so
-	wird im ersten Fall $S_!$ das Senden verboten und es kommt nicht zur Kollision bzw. $S_2$ wird es im zweiten Fall verboten zu Senden.\\
+	wird im ersten Fall $S_1$ das Senden verboten und es kommt nicht zur Kollision bzw. $S_2$ wird es im zweiten Fall verboten zu Senden.\\
 \end{adjustwidth}
 \textbf{(iv)}
 \begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
