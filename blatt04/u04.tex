@@ -82,13 +82,13 @@ betragen (dies ergibt $S = 198.\bar{6}$ Rahmen/s).
 
 \begin{exercise}{1.5}
 \begin{subexercise}
-	
+	Bei 4 Bit für Sequenz- und Quittungsnummer ist die maximale Größe des Sendefensters $2^4 = 16$. Der Sender darf also noch 12 weitere Rahmen verschicken bis er auf eine Quittung warten muss, je nach MODULUS zum Beispiel 7 - 16 und 0 - 1.
 \end{subexercise}
 \begin{subexercise}
-	
+	Mit $N(R) = 6$ bestätigt der Empfänger den Erhalt aller Rahmen bis $N(S) = 5$. Es können also drei zusätzliche Rahmen verschickt werden, da sich das Fenster über 3, 4, 5 nach vorne verschiebt, je nach MODULUS zum Beispiel 7 - 16 und 0 - 4.
 \end{subexercise}
 \begin{subexercise}
-	
+	Das Reject mit $N(R) = 5$ bestätigt alle Rahmen bis $N(S) = 4$ und fordert eine Neuübertragung der Rahmen ab $N(S) = 5$ an. Es können also zwei weitere Rahmen übertragen werden - damit insgesamt 14 -, zwei davon sollten allerdings die Rahmen mit $N(S) = 5$ und $N(S) = 6$ sein.
 \end{subexercise}
 \end{exercise}
 
