@@ -32,24 +32,30 @@
 \begin{exercise}{4}
 \begin{subexercise}
 	Zur Berechnung der maximalen Nutzdatenrate soll die Übertragung eines Pakets mit der maximalen Menge an Nutzdaten pro Rahmen, also 343 Byte, betrachtet werde. Gegeben ist
-	außerdem die maximale Datenrate von 1000 Bit/s und eine Latenz von 0,003s. \\
-	Mit dem Header von 16 Byte werden also $343+16=359$ Byte $= 2872$ Bit von $A$ nach $B$ übertragen. Dazu werden $\frac{2872 \text{Bit}}{1000 \text{Bit/s}} +$ 0,003s 
-	= 2,875s benötigt. Anschließend wird, da keine Bitfehler passieren, ein ACK Rahmen von 16 Byte = 128 Bit in $\frac{128 \text{Bit}}{1000 \text{Bit/s}} +$ 0,003s = 0,131s von
-	$B$ nach $A$ übertragen. Insgesamt benötigte man also 2,875 + 0,131 = 3,006s für die Übertragung des Pakets und der Bestätigung, es ergibt sich also die maximale
-	Nutzdatenrate von $\frac{343\text{Bit}}{\text{3,006s}}\approx$ 114 Bit/s = 0,114 Mbit/s.
+	außerdem die maximale Datenrate von 1000000 Bit/s und eine Latenz von 0,003s. \\
+	Mit dem Header von 16 Byte werden also $343+16=359$ Byte $= 2872$ Bit von $A$ nach $B$ übertragen. Dazu werden $\frac{2872 \text{Bit}}{1000000 \text{Bit/s}} +$ 0,003s 
+	= 0,005872s benötigt. Anschließend wird, da keine Bitfehler passieren, ein ACK Rahmen von 16 Byte = 128 Bit in $\frac{128 \text{Bit}}{1000000 \text{Bit/s}} +$ 0,003s = 0,003128s von
+	$B$ nach $A$ übertragen. Insgesamt benötigte man also 0,005872 + 0,003128 = 0,009s für die Übertragung des Pakets und der Bestätigung, es ergibt sich also die maximale
+	Nutzdatenrate von $\frac{343\cdot 8\text{Bit}}{\text{0,009s}}\approx$ 304889 Bit/s = 304,889 kBit/s $\approx$ 305 kBit/s.
 \end{subexercise}
 \begin{subexercise}
-	Als direkte Maßnahme könnte man die maximale Größe von Nutzdaten pro Rahmen vergrößern. Dies würde zu einer Steigerung der (maximalen) Nutzdatenrate führen, da 
+	Als direkte Maßnahme könnte man die maximale Größe von Nutzdaten pro Rahmen (also die Rahmengröße) vergrößern. Dies würde zu einer Steigerung der (maximalen) Nutzdatenrate führen, da 
 	insgesamt weniger Pakete verschickt werden müssten bei großen Datenmengen und somit weniger Quittierungen durch das Zurücksenden eines ACK Rahmens stattfinden
 	würden. Für ein Byte Nutzdaten muss dann also im Schnitt weniger auf ein ACK "gewartet" werden.
 \end{subexercise}
 \begin{subexercise}
-	Gehe bei einer erfolgreichen Übertragung eines Pakets von der Nutzdatenrate von (a) aus, d.h. 0,114 Mbit/s. Eine Übertragung schlägt fehl, wenn entweder der Rahmen mit
+	Gehe bei einer erfolgreichen Übertragung eines Pakets von der Nutzdatenrate von (a) aus, d.h. 305 kBit/s. Eine Übertragung schlägt fehl, wenn entweder der Rahmen mit
 	Nutzdaten und Header (359 Byte) einen Bitfehler hat, oder falls das darauf folgende ACK (16 Byte) einen Bitfehler hat und somit als NACK erkannt wird. Die Wahrscheinlichkeit
 	für ein Bit, fehlerfrei zu sein, ist $1-10^{-4}=0.9999$. Die Wahrscheinlichkeit, dass alle der 359 + 16 Byte = 375 Byte = 3000 Bit fehlerfrei sind, liegt demnach bei
 	$0.9999^{3000}\approx 0.74$. Dementsprechend liegt die Wahrscheinlichkeit eines Fehlers bei der Übertragung bei $1-0.9999^{3000}\approx 0.26$. Im Falle eines Fehlers
 	müssen erneut der Rahmen mit Nutzdaten und Header und das anschließende ACK gesendet werden, also die doppelte Datenmenge. Somit halbiert sich im Fehlerfall
-	die Nutzdatenrate auf 0,057 Mbit/s. Die mittlere Nutzdatenrate liegt somit bei $0.9999^{3000} \cdot 0,114 + (1-0.9999^{3000}) \cdot 0.057 \approx 0.099$ Mbit/s.
+	die Nutzdatenrate auf 152.5 Mbit/s. Nun kann bei der ernteuten Übertragung wieder ein Fehler auftreten, es würde die dreifache Datenmenge übertragen, die Datenrate drittelt sich.
+	Die Wahrscheinlichkeit für diesen Fall (im dritten Anlauf soll die Übertragung klappen) beträgt $0.26 \cdot 0.26 \cdot 0.74$. Nach diesem Prinzip lässt sich für die mittlere
+	Nutzdatenrate $\overline{d}$ die folgende Formel konstruieren (j gibt also die benötigte Anzahl an Übertragungswiederholungen an):
+	\[
+	\overline{d} =\sum_{j=0}^{\infty}0.74 \cdot 0.26^j \cdot \frac{305}{j+1} = 261.532 \text{ [kBit/s]}
+	\]
+	%Die mittlere Nutzdatenrate liegt somit bei $0.9999^{3000} \cdot 0,114 + (1-0.9999^{3000}) \cdot 0.057 \approx 0.099$ Mbit/s.
 \end{subexercise}
 \begin{subexercise}
 	Da die Aufgabenstellung suggeriert, dass beliebig viele empfangene Rahmen auf einmal verwaltet werden können, bietet es sich an, \textit{Selective Repeat} zu verwenden,
@@ -85,7 +91,7 @@ betragen (dies ergibt $S = 198.\bar{6}$ Rahmen/s).
 	Bei 4 Bit für Sequenz- und Quittungsnummer ist die maximale Größe des Sendefensters $2^4 = 16$. Der Sender darf also noch 12 weitere Rahmen verschicken bis er auf eine Quittung warten muss, je nach MODULUS zum Beispiel 7 - 16 und 0 - 1.
 \end{subexercise}
 \begin{subexercise}
-	Mit $N(R) = 6$ bestätigt der Empfänger den Erhalt aller Rahmen bis $N(S) = 5$. Es können also drei zusätzliche Rahmen verschickt werden, da sich das Fenster über 3, 4, 5 nach vorne verschiebt, je nach MODULUS zum Beispiel 7 - 16 und 0 - 4.
+	Mit $N(R) = 6$ bestätigt der Empfänger den Erhalt aller Rahmen bis $N(S) = 5$. Es können also drei zusätzliche Rahmen (insgesamt 15) verschickt werden, da sich das Fenster über 3, 4, 5 nach vorne verschiebt, je nach MODULUS zum Beispiel 7 - 16 und 0 - 4.
 \end{subexercise}
 \begin{subexercise}
 	Das Reject mit $N(R) = 5$ bestätigt alle Rahmen bis $N(S) = 4$ und fordert eine Neuübertragung der Rahmen ab $N(S) = 5$ an. Es können also zwei weitere Rahmen übertragen werden - damit insgesamt 14 -, zwei davon sollten allerdings die Rahmen mit $N(S) = 5$ und $N(S) = 6$ sein.
@@ -98,20 +104,23 @@ betragen (dies ergibt $S = 198.\bar{6}$ Rahmen/s).
 \begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
 	%Zwischen $S_1$ und $S_2$ liegt eine Latenz von $\frac{90}{3 \cdot 10^8}= 3\cdot 10^{-7}$s vor, zwischen $S_2$ bzw. $S_1$ und $D$ dementsprechend $1.5 \cdot 10^{-7}$s,
 	%da nur die halbe Strecke vorliegt.
-	Bei einer Datenrate von 10MBit/s sendet $S_1$ die 1400 Byte =1.4 MByte = 11.2 MBit in $\frac{11.2}{10}=1.12$s, also von $t_1=1$s bis $t_2=2.12$s. Da $S_2$ ebenfalls nur an
+	Bei einer Datenrate von 10MBit/s sendet $S_1$ die 1400 Byte = 0.0014 MByte = 0.0112 MBit in $\frac{0.0112}{10}=0.00112$s, also von $t_1=1$s bis $t_2=1.00112$s. Da $S_2$ ebenfalls nur an
 	$D$ senden möchte, kommt es nur zur Kollision, falls sich Rahmen im Punkt $D$ überlagern. Weil $S_1$ und $S_2$ genau gleich entfernt von $D$ sind und die gleiche Menge an Daten
- 	senden möchten, kommt es zur Kollision, falls $S_2$ im gleichen Sendezeitraum wie $S_1$ oder früher senden möchte, d.h. von $t=0$s bis $t_2$. (Die Latenzen gleichen sich aus, da
-	gleiche Entfernung. Außerdem ist $S_2$ noch nicht fertig bei 1s, wenn es bei 0s beginnt, also ab da auch Kollisionen.)\\
+ 	senden möchten, kommt es zur Kollision, falls $S_2$ im gleichen Sendezeitraum wie $S_1$ oder früher senden möchte, d.h. von $t=0.99888$s bis $t_2$. (Die Latenzen heben sich auf, da
+	gleiche Entfernung.)\\
 \end{adjustwidth}
 \textbf{(ii)}
 \begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
-	$S_1$ möchte bei $t=1000ms$ senden, jedoch beginnt erst bei $t_1=1000.5ms$ ein Zeitslot, da $1.5 \cdot 667 = 1000.5$. Somit würde $S_1$ ab $t_1$ senden und alle
-	darauf folgenden Slots belegen, bis die 1400 Byte übertragen sind. Aufgrund gleicher physikalischer Bedingungen wie in (a) sendet $S_1$ 1.12s lang. Der letzte Slot,
-	den $S_1$ dabei belegt, liegt bei $t_2=2119.5$ms, da $S_1$ beim Zeitpunkt $1000.5+1120=2120.5$ms fertig mit Senden ist . (Die letzten 0.5ms des Slots bleiben ungenutzt.) Da
-	wieder $S_2$ Daten mit gleicher Größe senden möchte und beide die gleiche Latenz zu $D$ aufweisen, kommt es zur Kollision, falls $S_2$ einen Sendewunsch 
-	ab $t=0$s bis
-	%nach 999ms (wird diesem Slot gerade nicht mehr zugeteilt, erster Zeitslot wäre dann bei $t_1$) 
-	 vor bzw. bei $t_2$ hat, also dem letzten von $S_1$ belegten Slot.\\ 
+	$S_1$ möchte bei $t=1000$ms senden, jedoch beginnt erst bei $t_1=1000.5$ms ein Zeitslot, da $1.5 \cdot 667 = 1000.5$. Somit würde $S_1$ ab $t_1$ senden und alle
+	darauf folgenden Slots belegen, bis die 1400 Byte übertragen sind. Aufgrund gleicher physikalischer Bedingungen wie in (a) sendet $S_1$ 1.12ms lang. 
+	Da ein Slot 1.5ms lang ist und $1.12<1.5$, werden die Daten innerhalb dieses Slots übertragen. Es kommt also zur Kollision, wenn $S_1$ und $S_2$ um den selben Slot konkurrieren,
+	d.h. wenn $S_2$ einen Sendewunsch nach 999ms (kriegt diesen Slot also gerade nicht mehr) und vor 1000.5ms hat (und somit gerade den Slot von $S_1$ noch kriegt).\\
+	%Der letzte Slot,
+	%den $S_1$ dabei belegt, liegt bei $t_2=2119.5$ms, da $S_1$ beim Zeitpunkt $1000.5+1120=2120.5$ms fertig mit Senden ist . (Die letzten 0.5ms des Slots bleiben ungenutzt.) Da
+	%wieder $S_2$ Daten mit gleicher Größe senden möchte und beide die gleiche Latenz zu $D$ aufweisen, kommt es zur Kollision, falls $S_2$ einen Sendewunsch 
+	%ab $t=0$s bis
+		%nach 999ms (wird diesem Slot gerade nicht mehr zugeteilt, erster Zeitslot wäre dann bei $t_1$) 
+	 %vor bzw. bei $t_2$ hat, also dem letzten von $S_1$ belegten Slot.\\ 
 \end{adjustwidth}
 \textbf{(iii)}
 \begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
@@ -119,12 +128,12 @@ betragen (dies ergibt $S = 198.\bar{6}$ Rahmen/s).
 	falls die Station auf der Leitung gerade nichts hört. Da eine Latenz zwischen $S_1$ und $S_2$ herrscht, kommt es zur Kollision, falls $S_2$ anfängt zu senden, bevor
 	das Signal durch die Latenz verzögert bei $S_2$ ankommt bzw. $S_2$ anfängt zu senden, sodass durch die Latenz das Signal bei $S_1$ bei 1s noch nicht angekommen ist.
 	Es folgt also, dass es zur Kollision kommt, falls $S_2$ von $1-4.5\cdot 10^{-7}$s bis $1+4.5\cdot 10^{-7}$s senden möchte. Möchte $S_2$ davor oder danach senden, so
-	wird im ersten Fall $S_1$ das Senden verboten und es kommt nicht zur Kollision bzw. $S_2$ wird es im zweiten Fall verboten zu Senden.\\
+	wird im ersten Fall $S_1$ das Senden verboten und es kommt nicht zur Kollision bzw. $S_2$ wird es im zweiten Fall verboten zu Senden. (Sofern die Datenübertragung noch nicht abgeschlossen.)\\
 \end{adjustwidth}
 \textbf{(iv)}
 \begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
 	Es kann zu keiner Kollision kommen, da es sich bei Token Ring um ein geregeltes Verfahren handelt, bei dem nur gesendet werden kann, falls ein Frei-Token ankommt, 
-	welches dann das Token belegt. $S_2$ muss also warten, bis wieder ein Frei-Token ankommt.
+	welches dann das Token belegt. $S_2$ muss also warten, bis wieder ein Frei-Token ankommt bzw. hat das Frei-Token kurz vor $S_1$ belegt, woraufhin $S_1$ warten muss.
 \end{adjustwidth}
 \end{subexercise}
 \begin{subexercise}
