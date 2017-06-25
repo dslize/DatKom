@@ -1,0 +1,81 @@
+\documentclass{../exercisesheet}
+
+\title{Datenkommunikation und Informationssysteme, Übung 5}
+\author{
+    Domenic Quirl \\ 354437
+    \and
+    Julian Schakib \\ 353889
+    \and 
+    Daniel Schleiz \\ 356092
+}
+
+\renewcommand{\Exercise}{Aufgabe}
+\date{Übungsgruppe 14}
+
+\usepackage{float}
+%\usepackage{siunitx}
+\usepackage{color}
+\usepackage{multirow}
+
+\begin{document}
+\maketitle
+\pointtable
+
+
+\begin{exercise}{4}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\end{exercise}
+
+\begin{exercise}{5}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\end{exercise}
+
+\begin{exercise}{4}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\end{exercise}
+
+\begin{exercise}{2}
+\begin{subexercise}
+\begin{center}
+\begin{tabular}{c|cc|cc|cc}
+\multirow{2}{*}{Protokoll} & \multicolumn{2}{c}{lokal} & \multicolumn{2}{c}{global} & \multicolumn{2}{c}{Ziel} \\
+ & IP-Adresse & Port & IP-Adresse & Port & IP-Adresse & Port \\
+\hline
+TCP & 10.0.0.1 & 8051 & 137.226.12.228 & 8051 & 137.226.13.142 & 443 \\
+UDP & 10.0.0.3 & 4711 & 137.226.12.228 & 4711 & 8.8.8.8 & 53 \\
+UDP & 10.0.0.4 & 4711 & 137.226.12.228 & 4712 & 8.8.8.8 & 53 \\
+\end{tabular}
+\end{center}
+\end{subexercise}
+\begin{subexercise}
+Die Tabelle müsste um einen Eintrag ergänzt werden, welcher eingehende Anfragen auf Port 80 an Port 8888 des Rechners B weiterleitet, also ein Eintrag der Form\\
+\begin{center}
+\begin{tabular}{c|cc|cc|cc}
+\multirow{2}{*}{Protokoll} & \multicolumn{2}{c}{lokal} & \multicolumn{2}{c}{global} & \multicolumn{2}{c}{Ziel} \\
+ & IP-Adresse & Port & IP-Adresse & Port & IP-Adresse & Port \\
+\hline
+TCP & 10.0.0.2 & 8888 & 137.226.12.228 & 80 & - & - \\
+\end{tabular}
+\end{center}
+\end{subexercise}
+\end{exercise}
+
+\end{document}
