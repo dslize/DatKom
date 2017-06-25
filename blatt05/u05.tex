@@ -34,14 +34,63 @@
 \end{subexercise}
 \end{exercise}
 
+
 \begin{exercise}{5}
 \begin{subexercise}
-
+Berechne zunächst die Latenzen (Länge geteilt durch die Ausbreitungsgeschwindigkeit) und die maximalen Datenraten zwischen den Zwischenknoten:\\
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c|c}
+ & Latenz & max. Datenrate \\ \hline
+$S\rightarrow R_1$      & 2,5$\mu$s & 1 Mbit/s \\ \hline
+$R_1 \rightarrow R_2$ & 25$\mu$s & 1000 Mbit/s \\ \hline
+$R_2 \rightarrow D$     & 5$\mu$s & 10 Mbit/s
+\end{tabular}
+\end{table}\\
+(Bei NRZ wird pro Schritt ein Bit kodiert, also in dem Fall  entspricht 1 MBaud gerade 1 Mbit/s. Bei 4B/5B werden 4 Bits in 5 Schritten übertragen, d.h. $1250 \cdot 0,8$ Mbit/s. Für den
+Manchester Leitungscode werden zwei Schritte benötigt, um ein Bit zu übertragen, also $20 \cdot 0,5$ Mbit/s.)\\ \ \\
+\textbf{(i)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+Für $P=75 \cdot 8=600$ Bit benötigt das Paket (inklusive Header von 160 Bit)
+\[
+\frac{760 \text{Bit}}{10^6 \text{Bit/s}} + \frac{760 \text{Bit}}{1000 \cdot 10^6 \text{Bit/s}} + \frac{760 \text{Bit}}{10 \cdot 10^6 \text{Bit/s}} + 32,5 \cdot 10^{-6}\text{s} + 
+2 \cdot 10^{-6}\text{s} = 0,87126 \cdot 10^{-3}\text{s}
+\]
+(Benötigte Zeit zur Übertragung der jeweiligen Leitungen plus die summierten Latenzen plus die Verarbeitungszeiten der Zwischenstationen $R_i$.)
+\end{adjustwidth}
+\textbf{(ii)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+Für $P=1500 \cdot 8=12000$ Bit benötigt das Paket (inklusive Header von 160 Bit)
+\[
+\frac{12160 \text{Bit}}{10^6 \text{Bit/s}} + \frac{12160 \text{Bit}}{1000 \cdot 10^6 \text{Bit/s}} + \frac{12160 \text{Bit}}{10 \cdot 10^6 \text{Bit/s}} + 32,5 \cdot 10^{-6}\text{s} + 
+2 \cdot 10^{-6}\text{s} = 13,42266 \cdot 10^{-3}\text{s}
+\]
+\end{adjustwidth}
+\textbf{(iii)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+Für $P=30000 \cdot 8=240000$ Bit benötigt das Paket (inklusive Header von 160 Bit)
+\[
+\frac{240160 \text{Bit}}{10^6 \text{Bit/s}} + \frac{240160 \text{Bit}}{1000 \cdot 10^6 \text{Bit/s}} + \frac{240160 \text{Bit}}{10 \cdot 10^6 \text{Bit/s}} + 32,5 \cdot 10^{-6}\text{s}
++ 2 \cdot 10^{-6}\text{s} = 264,45066 \cdot 10^{-3}\text{s}
+\] \ \\
+\end{adjustwidth}
 \end{subexercise}
 \begin{subexercise}
-
+\textbf{(i)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+Die Nachricht wird in $\frac{30000}{75}=400$ Paketen verschickt und die Versendung benötigt demnach $400 \cdot 0,87126 \cdot 10^{-3}\text{s}=348,504$ms.
+\end{adjustwidth}
+\textbf{(ii)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+Die Nachricht wird in $\frac{30000}{1500}=20$ Paketen verschickt und die Versendung benötigt demnach $20 \cdot 13,42266 \cdot 10^{-3}\text{s}=268,4532$ms.
+\end{adjustwidth}
+\textbf{(iii)}
+\begin{adjustwidth}{2em}{0em}\vspace{-\baselineskip}
+Die Nachricht wird in einem Paket verschickt und die Versendung benötigt demnach $264,45066$ms.
+\end{adjustwidth}
 \end{subexercise}
 \end{exercise}
+
 
 \begin{exercise}{4}
 \begin{subexercise}
@@ -50,7 +99,11 @@
 \begin{subexercise}
 
 \end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
 \end{exercise}
+
 
 \begin{exercise}{2}
 \begin{subexercise}
