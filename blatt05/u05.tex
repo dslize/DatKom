@@ -93,14 +93,40 @@ Die Nachricht wird in einem Paket verschickt und die Versendung benötigt demnac
 
 
 \begin{exercise}{4}
+Damit die Adressen nicht zu lang werden, wird im Folgenden, wenn die Betrachtung der Binärdarstellung eines gewissen Teils notwendig ist, nur der relevante Teil binär dargestellt. \\
 \begin{subexercise}
-
+Der IP-Adressbereich \texttt{137.226.40.0/21} impliziert eine Subnetzmaske mit 21 Einsen, d.h. die Subnetzmaske \texttt{255.255.248.0 = 255.255.11111000.0} (und \texttt{137.226.40.0 = 137.226.00101000.0}).
+\begin{itemize}
+\item Verundet man IP 1 mit der Subnetzmaske, so erhält man die Adresse \texttt{137.226.48.0 = \\ 137.226.00110000.0}. Die Adresse liegt also nicht im gegebenen Adressbereich, da 
+	\texttt{00110 $\neq$ 00101}.
+\item Man sieht direkt, dass IP 2 nicht im Adressbereich liegt, weil schon im ersten 8 Bit Teil der Adresse ein Unterschied vorliegt und dieser Teil offensichtlich bei der Subnetzmaske verundet
+	wird. (\texttt{136 $\neq$ 137}).
+\end{itemize}
 \end{subexercise}
 \begin{subexercise}
-
+\begin{itemize}
+\item Um 900 Rechner in LAN 1 zu adressieren, benötigt man 10 Bit ($2^9 - 2 = 510 < 900 < 1022 = 2^{10}-2$). Somit kriegt LAN 1 den Adressbereich \texttt{137.226.40.0/22} mit
+	Subnetzmaske \texttt{255.255.252.0}. (So klein wie möglich, da 11 Bit zur Verfügung standen.) Das Subnetz erhält als Netz-ID die niedrigste Adresse des Subnetzes, also 
+	\texttt{137.226.40.0}. (Hosts: \texttt{137.226.001010xx.xxxxxxxx})
+	\\ Der restliche Adressbereich umfasst \texttt{137.226.44.0/22}.
+\item Um 200 Rechner in LAN 2 zu adressieren, benötigt man 8 Bit ($2^7 - 2 = 126 < 200 < 254 = 2^8-2$). Der kleinstmögliche Adressbereich für LAN 2 wäre dann 
+	\texttt{137.226.44.0/24} mit Subnetzmaske \texttt{255.255.255.0} und Netz-ID \texttt{137.226.44.0}. (Hosts: \texttt{137.226.00101100.xxxxxxxx})
+\item Um 500 Rechner in LAN 3 zu adressieren, benötigt man 9 Bit ($2^8 - 2 = 254 < 500 < 510 = 2^9-2$). Der kleinstmögliche Adressbereich für LAN 3 wäre dann 
+	\texttt{137.226.46.0/23} mit Subnetzmaske \texttt{255.255.254.0} und Netz-ID \texttt{137.226.46.0}. (Hosts: \texttt{137.226.0010101x.xxxxxxxx})
+\item Um 75 Rechner adressieren zu können benötigt man 7 Bit. Der kleinst mögliche Adressbereich für LAN 4 wäre dann \texttt{137.226.45.0/25} mit Subnetzmaske 
+	\texttt{255.255.255.128} und Netz-ID \texttt{137.226.45.0}. (Hosts: \texttt{137.226.00101001.0xxxxxxx}).
+\end{itemize}
+\ \\Nach der Einteilung ist noch der Adressbereich \texttt{137.226.45.128/25} frei.
 \end{subexercise}
 \begin{subexercise}
-
+Die höchste Adresse eines Subnetzes ist für Broadcast reserviert, weshalb diese nicht vergeben wird. Nach den Vergaberegeln der Aufgabenstellung ergebt sich folgende Verteilung von
+IP-Adressen:
+\begin{itemize}
+\item In LAN 1 erhält A.if1 \texttt{137.226.40.1}, h1 kriegt \texttt{137.226.43.254} und h2 kriegt \texttt{137.226.43.253}
+\item A.if2: \texttt{137.226.44.1}, B.if1: \texttt{137.226.44.2}, h3: \texttt{137.226.44.254}
+\item B.if2: \texttt{137.226.46.1}, h4: \texttt{137.226.47.254}
+\item B.if3: \texttt{137.226.45.1}, h5: \texttt{137.226.45.126}
+\end{itemize}
 \end{subexercise}
 \end{exercise}
 
