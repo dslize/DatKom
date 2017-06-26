@@ -24,13 +24,148 @@
 
 \begin{exercise}{4}
 \begin{subexercise}
-
+Zu Beginn ist für $i \in \{1,...,4\}$ die Weiterleitungstabelle von Switch i leer:\\
+\begin{center}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch i}\\
+\hline
+Rechner & Port\\
+\hline
+  &  \\
+\end{tabular}
+\end{center}
+\begin{enumerate}
+\item A sendet an B
+\begin{itemize}
+\item Switch 1 empfängt die Nachricht auf Port 1.1 und legt den Eintrag $A,\ 1.1$ an. Da er noch keinen Eintrag für B hat, broadcastet er die Nachricht an 1.2, 1.3 und 1.4. 1.2 ist Rechner B, der die Nachricht sieht. 
+\item 1.3 ist 2.1 an Hub 1, welcher die Nachricht an 2.2 und 2.3 broadcastet. An 2.2 sieht Rechner C die Nachricht, 2.3 ist 3.1 an Switch 2. Dieser legt also auch einen Eintrag $A,\ 3.1$ an, kennt B aber ebenfalls nicht und broadcastet die Nachricht daher an 3.2 und 3.3. 3.2 ist D, der dann die Nachricht sieht, 3.3 ist 6.1 an Switch 4. Auch hier wird ein Eintrag $A,\ 6.1$  für A angelegt, B ist nicht bekannt und die Nachricht wird daher gebroadcastet. Sie erreicht G über 6.2
+\item 1.4 ist 4.1 an Switch 3. Dieser legt den Eintrag $A,\ 4.1$ an und broadcastet an 4.2 und 4.3, da auch er B nicht kennt. An 4.3 sieht sie E, 4.2 ist 5.1 an Hub 2, welcher die Nachricht noch an 5.2 broadcastet, wo F sie sieht.
+\end{itemize}
+Es haben also die Rechner $(A), B, C, D, E, F, G$ den Rahmen gesehen, und die Weiterleitungstabellen sind wie folgt:\\
+\begin{center}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 1}\\
+\hline
+Rechner & Port\\
+\hline
+A & 1.1 \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 2}\\
+\hline
+Rechner & Port\\
+\hline
+A & 3.1 \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 3}\\
+\hline
+Rechner & Port\\
+\hline
+A & 4.1 \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 4}\\
+\hline
+Rechner & Port\\
+\hline
+A & 6.1 \\
+\end{tabular}
+\end{center}
+\item C sendet an A
+\begin{itemize}
+\item Hub 1 empfängt die Nachricht auf Port 2.2 und broadcastet sie an 2.1 und 2.3.
+\item 2.3 ist 3.1 an Switch 2. Dieser hat einen Eintrag für A für denselben Port, verwirft also den Rahmen. Trotzdem legt er den Eintrag $C,\ 3.1$ an.
+\item 2.1 ist 1.3 an Switch 1. Dieser hat einen Eintrag für A, nämlich 1.1. Er leitet die Nachricht also an Port 1.1 weiter, wo A sie sieht, und legt den Eintrag $C,\ 1.3$ an.
+\end{itemize}
+Es haben also nur die Rechner $(C), A$ den Rahmen gesehen. Die Weiterleitungstabellen der Switches sind wie folgt:\\
+\begin{center}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 1}\\
+\hline
+Rechner & Port\\
+\hline
+A & 1.1 \\
+C & 1.3 \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 2}\\
+\hline
+Rechner & Port\\
+\hline
+A & 3.1 \\
+C & 3.1 \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 3}\\
+\hline
+Rechner & Port\\
+\hline
+A & 4.1 \\
+  &   \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 4}\\
+\hline
+Rechner & Port\\
+\hline
+A & 6.1 \\
+  &   \\
+\end{tabular}
+\end{center}
+\item G sendet an A
+\begin{itemize}
+\item Switch 4 empfängt die Nachricht auf Port 6.2 und legt den Eintrag $G,\ 6.2$ an. Da er bereits den Eintrag 6.1 für A besitzt, leitet er sie an diesen Port weiter.
+\item Dort empfängt sie Switch 2 auf Port 3.3, welcher ebenfalls zunächst einen Eintrag $G,\ 3.3$ anlegt. Da er einen Eintrag für A hat, sendet er die Nachricht weiter an Port 3.1.
+\item Dies ist Port 2.3 an Hub 1. Dieser broadcastet die Nachricht an 2.1 und 2.2. An 2.2 wird sie von C gesehen.
+\item 2.1 ist 1.3 an Switch 1. Auch hier wird ein Eintrag $G,\ 1.3$ angelegt. Switch 1 hat bereits einen Eintrag für A für 1.1, leitet den Rahmen also nur an diesen Port weiter, wo A ihn empfängt.
+\end{itemize}
+Es haben also die Rechner $(G),C,A$ den Rahmen gesehen. Die Weiterleitungstabellen sind wie folgt:\\
+\begin{center}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 1}\\
+\hline
+Rechner & Port\\
+\hline
+A & 1.1 \\
+C & 1.3 \\
+G & 1.3 \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 2}\\
+\hline
+Rechner & Port\\
+\hline
+A & 3.1 \\
+C & 3.1 \\
+G & 3.3 \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 3}\\
+\hline
+Rechner & Port\\
+\hline
+A & 4.1 \\
+  &  \\
+  &   \\
+\end{tabular}
+\begin{tabular}{c|c}
+\multicolumn{2}{c}{Switch 4}\\
+\hline
+Rechner & Port\\
+\hline
+A & 6.1 \\
+G & 6.2 \\
+  &   \\
+\end{tabular}
+\end{center}
+\end{enumerate}
 \end{subexercise}
 \begin{subexercise}
-
+Seien Hub 3 und Hub 4 die Hubs, die Switch 1 und 3 ersetzen. Wenn C an F sendet, broadcastet Hub 1 an Hub 2 und 3 und dann diese an alle Rechner sowie beide an Hub 4. Es kommt also zur Kollision, da der Rahmen von Hub 1 aus von beiden Seiten Richtung Hub 4 gesendet wird.
 \end{subexercise}
 \begin{subexercise}
-
+Solange die Switches haben keinen Eintrag für F haben, ändert sich nichts, da sie dann genau wie ein Hub die eingehende Nachricht broadcasten. Bei Switch 1 macht auch ein Eintrag für F nur den Unterschied, dass A und B den Rahmen nicht mehr sehen. Hat Switch 3 allerdings einen Eintrag für F auf 4.2, würde er eine eingehende Nachricht an F auf diesem Port verwerfen. So hängt es dann vom zeitlichen Ablauf im Netzwerk ab, ob es noch zu einer Kollision kommt, im Gegensatz zu vorher tritt diese dann nicht mehr auf jeden Fall irgendwo auf, sondern nur, wenn sie Switch 3 auf 4.2 noch nicht erreicht hat, bevor dieser sie von 4.1 zu 4.2 weiterleitet. Eine Kollision kann also nur noch in Hub 2 auftreten.
 \end{subexercise}
 \end{exercise}
 
