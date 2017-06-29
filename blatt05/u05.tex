@@ -162,10 +162,13 @@ G & 6.2 \\
 \end{enumerate}
 \end{subexercise}
 \begin{subexercise}
-Seien Hub 3 und Hub 4 die Hubs, die Switch 1 und 3 ersetzen. Wenn C an F sendet, broadcastet Hub 1 an Hub 2 und 3 und dann diese an alle Rechner sowie beide an Hub 4. Es kommt also zur Kollision, da der Rahmen von Hub 1 aus von beiden Seiten Richtung Hub 4 gesendet wird.
+Seien Hub 3 und Hub 4 die Hubs, die Switch 1 und 3 ersetzen. Wenn C an F sendet, broadcastet Hub 1 an Hub 2 und 3 und dann diese an alle Rechner sowie beide an Hub 4.
+Es kommt also zur Kollision, da der Rahmen von Hub 1 aus von beiden Seiten Richtung Hub 4 gesendet wird. Da nicht weiter spezifiziert ist, ob die Übertragungswege
+zwischen den Hubs äquidistant sind, könnte es auch dazu kommen, dass keine Kollision entsteht, da eines der beiden Pakete später bei Hub 4 ankommt. Nichtsdestotrotz kommt es noch
+dazu, dass die beiden Pakete (bis zu ihrer maximalen Anzahl an Hops) im Netzwerk zirkulieren.
 \end{subexercise}
 \begin{subexercise}
-Solange die Switches haben keinen Eintrag für F haben, ändert sich nichts, da sie dann genau wie ein Hub die eingehende Nachricht broadcasten. Bei Switch 1 macht auch ein Eintrag für F nur den Unterschied, dass A und B den Rahmen nicht mehr sehen. Hat Switch 3 allerdings einen Eintrag für F auf 4.2, würde er eine eingehende Nachricht an F auf diesem Port verwerfen. So hängt es dann vom zeitlichen Ablauf im Netzwerk ab, ob es noch zu einer Kollision kommt, im Gegensatz zu vorher tritt diese dann nicht mehr auf jeden Fall irgendwo auf, sondern nur, wenn sie Switch 3 auf 4.2 noch nicht erreicht hat, bevor dieser sie von 4.1 zu 4.2 weiterleitet. Eine Kollision kann also nur noch in Hub 2 auftreten.
+Solange die Switches haben keinen Eintrag für F haben, ändert sich nichts, da sie dann genau wie ein Hub die eingehende Nachricht broadcasten. Bei Switch 1 macht auch ein Eintrag für F nur den Unterschied, dass A und B den Rahmen nicht mehr sehen. Hat Switch 3 allerdings einen Eintrag für F auf 4.2, würde er eine eingehende Nachricht an F auf diesem Port verwerfen. So hängt es dann vom zeitlichen Ablauf im Netzwerk ab, ob es noch zu einer Kollision kommt, im Gegensatz zu vorher tritt diese dann nicht mehr auf jeden Fall irgendwo auf, sondern nur, wenn sie Switch 3 auf 4.2 noch nicht erreicht hat, bevor dieser sie von 4.1 zu 4.2 weiterleitet. Eine Kollision kann also nur noch in Hub 2 auftreten bzw. an Hub 1, falls die Pakete zirkulieren.
 \end{subexercise}
 \end{exercise}
 
