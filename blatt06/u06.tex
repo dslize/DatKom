@@ -25,13 +25,59 @@
 
 \begin{exercise}{4}
 \begin{subexercise}
-
+\begin{itemize}
+	\item Paket 1 Header:
+	\begin{description}
+		\item[Version:] 4
+		\item[IHL:] 5 $\hat{=}$ 20 Byte
+		\item[Type of Service:] Priorität 0 = normales Datagramm, keine Flags
+		\item[Total Length:] 64 Byte
+		\item[Identification:] 54024
+		\item[DF:] 1
+		\item[MF:] 0
+		\item[Offset:] 0
+		\item[TTL:] 64
+		\item[Protocol:] 6 = TCP
+		\item[Checksum:] 7cd5
+		\item[SA:] 172.16.11.12
+		\item[DA:] 96.17.211.172
+	\end{description}
+	\item Paket 2 Header:
+	\begin{description}
+		\item[Version:] 4
+		\item[IHL:] 5 $\hat{=}$ 20 Byte
+		\item[Type of Service:] Priorität 1, keine Flags
+		\item[Total Length:] 60 Byte
+		\item[Identification:] 0
+		\item[DF:] 1
+		\item[MF:] 0
+		\item[Offset:] 0
+		\item[TTL:] 58
+		\item[Protocol:] 6 = TCP
+		\item[Checksum:] 55c2
+		\item[SA:] 96.17.211.172
+		\item[DA:] 172.16.11.12
+	\end{description}
+\end{itemize}
+\begin{description}
+\item[i)] \ \\
+IP-Adresse meines Rechners: 172.16.11.12\\
+IP-Adresse des Internetservers: 96.17.211.172
+\item[ii)] \ \\
+Wenn Rechner und Server dieselben Parameter verwenden, sendet der Server genau wie der Rechner mit einer TTL von 64. Wenn der Rechner vom Server also ein Paket mit TTL 58 empfängt und jeder Router auf dem Weg die TTL um 1 verringert, ergibt sich als Anzahl von Routern $64-58=6$.
+\end{description}
 \end{subexercise}
 \begin{subexercise}
-
+\begin{description}
+\item[i)] ::ffff:c0a8:0b2a : Die Adresse liegt in ::ffff:0:0/96, dem Subnetz von IPv6, welches den IPv4-Adressbereich integriert. Sie entspricht der IPv4-Adresse 192.168.11.42.
+\item[ii)] 2b0f::c56e:0000::339d:bcfc : Dieser String ist keine gültige IPv6-Adresse. IPv6 erlaubt das Weglassen von Nuller-Blöcken nur an einer Stelle, damit die Adresse eindeutig bleibt. In diesem Beispiel fehlen zum Beispiel drei Nuller-Blöcke, sodass man sowohl 2b0f:0000:c56e:0000:0000:0000:339d:bcfc als auch 2b0f:0000:0000:c56e:0000:0000:339d:bcfc konstruieren könnte.
+\item[iii)] ff00:bab1:0039:9c0b::e6ce:6629 : Ist im Gegensatz zu (ii) gültig. Da die Adresse mit ff00 beginnt, liegt sie im Subnetz der Multicast-Adressen ff00::/8, ist aber keine Broadcast-Adresse.
+\end{description}
 \end{subexercise}
 \begin{subexercise}
+Das Entfernen der Prüfsumme bietet den großen Vorteil, dass diese nicht von jedem Router neu berechnet werden muss, weil dieser die TTL dekrementiert.
 
+Dass der Wegfall nicht zu großen Problemen führt, liegt zum einen daran, dass der IPv6 Header, obwohl insgesamt aufgrund der längeren Adressen länger, aufgeräumter ist als der IPv4 Header. Es ist also weniger wahrscheinlich, dass Kontrollinformationen verfälscht werden, wenn ein Fehler auftritt, trifft er am ehesten eine der Adressen, was dann dazu führt, dass entweder das aktuelle Paket oder eine Antwort nicht ankommt und daher auf einer höheren Schicht im Zweifelsfall erneut gesendet wird. Außerdem implementieren viele Protokolle der Sicherungsschicht ihrerseits bereits eine Prüfsumme (z.B. CRC) für die gesendeten Daten.
 \end{subexercise}
 \end{exercise}
 
