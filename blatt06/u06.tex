@@ -128,9 +128,22 @@ die darauf folgende ICMP-Meldung an den Sender durch eine Firewall abgefangen wi
 \end{figure}
 \end{subexercise}
 \begin{subexercise}
-%Der längste Match der IP-Adresse von B in der Tabelle von A besteht bei \texttt{0.0.0.0/0}, somit sendet A durch ETH0.\\ \ \\
-%\texttt{Request A.ETH0 134.130.0.152} - 
-%\texttt{} - 
+Der längste Match der IP-Adresse von B in der Tabelle von A besteht bei \texttt{0.0.0.0/0}, somit sendet A durch ETH0.\\ \ \\
+\texttt{Request A.ETH0 134.130.0.152 134.130.0.1} - A erfragt die MAC von R3\\
+\texttt{Reply R3.ETH0 134.130.0.1 A.ETH0 134.130.0.152} - R3 teilt A seine MAC mit\\
+\texttt{Data A.ETH0 R3.ETH0} - Das Paket wird an R3 geschickt\\
+\ \\
+\texttt{Request R3.ETH1 134.130.1.2 134.130.1.1} - R3 erfragt die MAC von R1\\
+\texttt{Reply R1.ETH0 134.130.1.1 R3.ETH1 134.130.1.2} - R1 teilt R3 seine MAC mit\\
+\texttt{Data R3.ETH0 R1.ETH0} - Das Paket wird an R1 geschickt\\
+\ \\
+\texttt{Request R1.ETH1 134.130.3.2 134.130.3.1} - R1 erfragt die MAC von R2\\
+\texttt{Reply R2.ETH0 134.130.3.1 R1.ETH1 134.130.3.2} - R2 teilt R1 seine MAC mit\\
+\texttt{Data R1.ETH1 R2.ETH0} - Das Paket wird an R2 geschickt\\
+\ \\
+\texttt{Request R2.ETH2 134.130.3.129 134.130.3.166} - R2 erfragt die MAC von B\\
+\texttt{Reply B.ETH0 134.130.3.166 R2.ETH2 134.130.3.129} - B teilt R2 seine MAC mit\\
+\texttt{Data R2.ETH2 B.ETH0} - Das Paket wird an B geschickt\\
 \end{subexercise}
 \end{exercise}
 
