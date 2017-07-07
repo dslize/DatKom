@@ -92,7 +92,19 @@ Es existieren außerdem folgende Pfade von A nach I mit gleichen Kosten:
 \end{exercise}
 
 \begin{exercise}{5.5}
-
+\texttt{1: SYN, SEQ 42, WIN 2000, MSS 1000} \\
+\texttt{2: SYN, ACK, SEQ 5000, ACK 43, WIN 4000, MSS 1280} \\
+\texttt{3: ACK, SEQ 43, ACK 5001, WIN 2000} \\
+\texttt{4: SEQ 6000, WIN 200, DATA 512} \\
+\texttt{5: ACK, SEQ 7600, ACK 5800, WIN 2048} \\
+\texttt{6: SEQ 6512, WIN 1200, DATA 512} \\
+\texttt{7: ACK, SEQ 7600, ACK 6312, WIN 2048, DATA 100} (*)\\ 
+\texttt{8: ACK, SEQ 8000, ACK 9000, WIN 4000} \\
+\texttt{9: FIN, ACK, SEQ 9000, ACK 8000, WIN 2000} \\
+\texttt{10: FIN, ACK, SEQ 8000, ACK 9001, WIN 4000} \\
+\texttt{11: ACK, SEQ 9001, ACK 8001, WIN 2000} \\
+\ \\
+(*) Unter der Annahme, dass sich \texttt{WIN=2048} nicht verändert hat, da 512 Byte von der Applikation verarbeitet wurden.\\ \ \\
 \end{exercise}
 
 \end{document}
