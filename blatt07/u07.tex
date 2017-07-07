@@ -1,0 +1,94 @@
+\documentclass{../exercisesheet}
+
+\title{Datenkommunikation und Informationssysteme, Übung 7}
+\author{
+    Domenic Quirl \\ 354437
+    \and
+    Julian Schakib \\ 353889
+    \and 
+    Daniel Schleiz \\ 356092
+}
+
+\renewcommand{\Exercise}{Aufgabe}
+\date{Übungsgruppe 14}
+
+\usepackage{float}
+%\usepackage{siunitx}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{float}
+
+\begin{document}
+\maketitle
+\pointtable
+
+
+\begin{exercise}{1.5}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\end{exercise}
+
+
+\begin{exercise}{4}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\begin{subexercise}
+
+\end{subexercise}
+\end{exercise}
+
+
+\begin{exercise}{4}
+\begin{center}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & \multicolumn{10}{c|}{Schritt} \\
+\hline
+Router & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+\hline
+\hline
+A & \fbox{0,-} & 0,- & 0,- & 0,- & 0,- & 0,- & 0,- & 0,- & 0,- & 0,- \\
+\hline
+B & $\infty$ & 8,A & \fbox{8,A} & 8,A & 8,A & 8,A & 8,A & 8,A & 8,A & 8,A \\
+\hline
+C & $\infty$ & $\infty$ & 9,H & \fbox{9,H} & 9,H & 9,H & 9,H & 9,H & 9,H & 9,H \\
+\hline
+D & $\infty$ & $\infty$ & $\infty$ & $\infty$ & \fbox{11,C} & 11,C & 11,C & 11,C & 11,C & 11,C \\
+\hline
+E & $\infty$ & $\infty$ & $\infty$ & $\infty$ & 12,C & \fbox{12,C} & 12,C & 12,C & 12,C & 12,C \\
+\hline
+F & $\infty$ & $\infty$ & 13,H & 13,H & 13,H & 13,H & \fbox{13,H} & 13,H & 13,H & 13,H \\
+\hline
+G & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & 15,E & 15,E & \fbox{15,E} & 15,E \\
+\hline
+H & $\infty$ & \fbox{6, A} & 6, A & 6, A & 6, A & 6, A & 6, A & 6, A & 6, A & 6, A \\
+\hline
+I & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & $\infty$ & 14,E & \fbox{14,E} & 14,E & 14,E \\
+\hline
+\end{tabular}
+\end{center}
+\begin{description}
+\item[A -> I:] Der durch den Dijkstra-Algorithmus ermittelte kürzeste Pfad von A nach I ist (A,H),(H,C),(C,E),(E,I) mit Kosten 14.
+\end{description}
+\end{exercise}
+
+\begin{exercise}{5.5}
+
+\end{exercise}
+
+\end{document}
+
