@@ -25,29 +25,89 @@
 
 \begin{exercise}{1.5}
 \begin{subexercise}
-
+Latenz: Für die Latenz eignet sich sehr gut eine additive Metrik, die Güte eines Pfades entspricht also der Summe der Latenzen der Teilstrecken. Ein kleinerer Wert bedeutet hier einen besseren Pfad, da der Pfad dann eine geringere Gesamtlatenz aufweist.
 \end{subexercise}
 \begin{subexercise}
-
+Paketfehlerrate: Seien $p_1,...,p_k$ für $k\in \mathbb{N}$ die Paketfehlerraten der Teilstrecken. Die Wahrscheinlichkeit, dass ein Paket entlang des Gesamtpfades korrekt übertragen wird, ergibt sich zu $\prod_{i=1}^k(1-p_i)$. Man könnte entweder diese als Metrik verwenden, wobei dann ein größerer Wert, also eine höhere Wahrscheinlichkeit einer korrekten Übertragung, einen besseren Pfad bedeutet, oder man wählt die PER des Gesamtpfades als Metrik, $1-\prod_{i=1}^k(1-p_i)$. Letzteres hat den Vorteil, transitiv zu sein.
 \end{subexercise}
 \begin{subexercise}
-
+Datenrate: Hier könnte man als Güte des Pfades das Minimum der Datenraten der Teilstrecken wählen. Dies entspricht der Datenrate, mit der maximal gesendet werden kann. Ein höherer Wert, also eine höhere Datenrate, entspricht hier einem besseren Pfad.
 \end{subexercise}
 \end{exercise}
 
 
 \begin{exercise}{4}
 \begin{subexercise}
-
+\begin{center}
+\begin{tabular}{c||c|c|c|c|c|c|c}
+ & A & B & C & D & E & F & G \\
+\hline
+\hline
+A & - & B,3 & $\infty$ & $\infty$ & $\infty$ & F,12 & G,13 \\
+\hline
+B & A,3 & - & C,2 & $\infty$ & E,6 & $\infty$ & $\infty$ \\
+\hline
+C & $\infty$ & B,2 & - & $\infty$ & $\infty$ & $\infty$ & $\infty$ \\
+\hline
+D & $\infty$ & $\infty$ & $\infty$ & - & E,1 & $\infty$ & $\infty$ \\
+\hline
+E & $\infty$ & B,6 & $\infty$ & D,1 & - & F,2 & $\infty$ \\
+\hline
+F & A,12 & $\infty$ & $\infty$ & $\infty$ & E,2 & - & G,4 \\
+\hline
+G & A,13 & $\infty$ & $\infty$ & $\infty$ & $\infty$ & F,4 & - \\
+\hline
+\end{tabular}
+\end{center}
 \end{subexercise}
 \begin{subexercise}
-
+\begin{center}
+\begin{tabular}{c||c|c|c|c|c|c|c}
+ & A & B & C & D & E & F & G \\
+\hline
+\hline
+A & - & B,3 & B,5 & $\infty$ & B,9 & F,12 & G,13 \\
+\hline
+B & A,3 & - & C,2 & E,7 & E,6 & E,8 & A,16 \\
+\hline
+C & B,5 & B,2 & - & $\infty$ & B,8 & $\infty$ & $\infty$ \\
+\hline
+D & $\infty$ & E,7 & $\infty$ & - & E,1 & E,3 & $\infty$ \\
+\hline
+E & B,9 & B,6 & B,8 & D,1 & - & F,2 & F,6 \\
+\hline
+F & A,12 & E,8 & $\infty$ & E,3 & E,2 & - & G,4 \\
+\hline
+G & A,13 & A,16 & $\infty$ & $\infty$ & F,6 & F,4 & - \\
+\hline
+\end{tabular}
+\end{center}
 \end{subexercise}
 \begin{subexercise}
-
+\begin{center}
+\begin{tabular}{c||c|c|c|c|c|c|c}
+ & A & B & C & D & E & F & G \\
+\hline
+\hline
+A & - & B,3 & B,5 & B,10 & B,9 & B,11 & G,13 \\
+\hline
+B & A,3 & - & C,2 & E,7 & E,6 & E,8 & E,12 \\
+\hline
+C & B,5 & B,2 & - & B,9 & B,8 & B,10 & B,18 \\
+\hline
+D & E,10 & E,7 & E,9 & - & E,1 & E,3 & E,7 \\
+\hline
+E & B,9 & B,6 & B,8 & D,1 & - & F,2 & F,6 \\
+\hline
+F & E,11 & E,8 & E,10 & E,3 & E,2 & - & G,4 \\
+\hline
+G & A,13 & F,12 & A,18 & F,7 & F,6 & F,4 & - \\
+\hline
+\end{tabular}
+\end{center}
 \end{subexercise}
 \begin{subexercise}
-
+Nein, das \textit{Count-to-Infinity-Problem} kann in diesem Fall nicht auftreten. Dies liegt daran, dass das Ziel des Distance-Vektor-Routings die Ermittlung eines kürzesten Weges ist. Sollten sich also die Kosten eines Links verbessern, nehmen die zwei Router, welche über diesen Link verbunden sind, sofort genau diesen Wert als Kosten der Verbindung des jeweils anderen an, wenn dies nun die beste Verbindung ist, oder bleiben bei ihren alten Einträgen, wenn diese Verbindung immer noch günstiger ist. Im ersten Fall breitet sich diese Information zwar langsam über das Netzwerk aus, verursacht aber kein langsames Herunterzählen. Der Grund hierfür ist, dass alles veraltete Wissen, welches eventuell noch im Netzwerk existiert, gleich gute oder schlechtere Verbindungen beschreibt, und daher sofort ersetzt wird, im Gegensatz zu einer Verschlechterung der Kosten eines Links, bei der existierendes Wissen von noch existierenden, \textit{besseren} Verbindungen ausgeht.
 \end{subexercise}
 \end{exercise}
 
