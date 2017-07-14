@@ -58,10 +58,33 @@
 
 \begin{exercise}{5}
 \begin{subexercise}
-
+Da $p=13$ und $q=23$, ist $n=p\cdot q = 299$. Der public key ist also $\langle 61,299 \rangle$. Zudem ist $\Phi(299)=(13-1)\cdot(23-1)= 264$. Finde nun $d$ so, dass
+$d \cdot e = d \cdot 61 \equiv_{264} 1$. Verwende den erweiterten Algorithmus von \textsc{Euklid}:
+\begin{align*}
+264 &= 4 \cdot 61 + 20	&	1&=61-3\cdot 20 \\
+61 &= 3 \cdot 20 + 1	&	 &= 61-3 \cdot(264-4\cdot 61) \\
+20 &= 20 \cdot 1 + 0	&	 &= -3 \cdot 264 + 13 \cdot 61 \\
+\null &				&	 &\equiv_{264} 13 \cdot 61
+\end{align*}
+Nun folgt also, dass der private key $\langle 13, 299 \rangle$ ist.
+\begin{itemize}
+\item Verschlüssele $m_1=21$: $c_1 = 21^{61} \equiv_{299} 281$.
+\item Entschlüssele $c_2=291$: $m_2=291^{13} \equiv_{299} 5$.
+\end{itemize}
 \end{subexercise}
 \begin{subexercise}
-
+Es ist bekannt, dass $n=91$. Finde durch geschicktes Ausprobieren heraus, dass die Primfaktorzerlegung von $n$ gegeben ist durch $p=7$, $q=13$, da $91 = 7 \cdot 13$.
+Außerdem ist $\Phi(n)=6 \cdot 12 = 72$. Suche nun $d$, sodass $d \cdot e= d \cdot 29 \equiv_{72} 1$. Verwende erneut den erweiterten Algorithmus von \textsc{Euklid}:
+\begin{align*}
+72 &= 2 \cdot 29 + 14	&	1 &= 29 - 2 \cdot 14 \\
+29 &= 2 \cdot 14 + 1	&	  &= 29 - 2 \cdot (72-2 \cdot 29) \\
+14 &= 14 \cdot 1 + 0	&	  &= -2 \cdot 72 + 5 \cdot 29 \\
+\null &				&	  &\equiv_{72} 5 \cdot 29
+\end{align*}
+Es folgt, dass der private key gegeben ist durch $\langle 5,91\rangle$.
+\begin{itemize}
+\item Dekodiere $c=3$ zu $m=3^5 \equiv_{91} 61$.
+\end{itemize}
 \end{subexercise}
 \end{exercise}
 
