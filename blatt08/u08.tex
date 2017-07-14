@@ -44,14 +44,21 @@
 \begin{exercise}{4}
 \begin{subexercise}
 \begin{description}
-\item[i)] \ \\
+\item[i)] Bei einen passiven Angreifer bleibt der Diffie-Hellman Schlüsselaustausch sicher. Der Angreifer hat keine Kenntnis über die jeweils zufällig gewählten Zahlen $S_A$ und $S_B$
+von Alice und Bob und ist auch nicht in der Lage, Nachrichten zu manipulieren. Aufgrunddessen kann der Angreifer den Schlüssel $g^{S_A \cdot S_B} \text{ mod } p$ nur herausfinden, 
+indem er $S_A$ und $S_B$ durch diskretes Logarithmen von $T_A=g^{S_A} \text{ mod }p$ und $T_B$ berechnet. Dies ist jedoch nicht effizient möglich, weshalb auch die Berechnung
+des Schlüssels nicht effizient möglich ist.
 
-\item[ii)] \ \\
-
+\item[ii)] Bei einem aktiven Angreifer ist der Diffie-Hellman Schlüsselaustausch nicht mehr sicher. Da Pakete manipuliert werden können, kann der Angreifer sich selber eine gültige Zufallszahl
+$S_M$ generieren und jeweils die Übertragung von $T_A$ und $T_B$ stoppen und an dessen Stelle $T_M=g^{S_M} \text{ mod }p$ weiterleiten. $A$ und $B$ besitzen jeweils
+unterschiedliche Schlüssel $K_1=T_M=g^{S_M \cdot S_A} \text{ mod }p$ und $T_M=g^{S_M \cdot S_B} \text{ mod }p$, jedoch ist es für den Angreifer möglich, unter Kenntnis
+von $S_M$, $K_1$ und $K_2$ zu berechnen.
 \end{description}
 \end{subexercise}
 \begin{subexercise}
-
+Alice berechnet $T_A=3^3 \equiv_{17} 10$ und übertragt diese Zahl an Bob, während Bob $T_B=3^2 \equiv_{17} 9$ berechnet und dies an Alice überträgt.
+Nun berechnen Alice und Bob $T_B^{S_A}$ bzw. $T_A^{S_B}$, was in beiden Fällen gleich $3^{S_A \cdot S_B} = 3^6 = 3^3 \cdot 3^3 \equiv_{17} 10 \cdot 10 \equiv_{17} 15$.
+Also ist der (symmetrische) Schlüssel bestimmt durch 15.
 \end{subexercise}
 \end{exercise}
 
