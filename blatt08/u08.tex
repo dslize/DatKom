@@ -63,7 +63,7 @@ des Schlüssels nicht effizient möglich ist.
 
 \item[ii)] Bei einem aktiven Angreifer ist der Diffie-Hellman Schlüsselaustausch nicht mehr sicher. Da Pakete manipuliert werden können, kann der Angreifer sich selber eine gültige Zufallszahl
 $S_M$ generieren und jeweils die Übertragung von $T_A$ und $T_B$ stoppen und an dessen Stelle $T_M=g^{S_M} \text{ mod }p$ weiterleiten. $A$ und $B$ besitzen jeweils
-unterschiedliche Schlüssel $K_1=T_M=g^{S_M \cdot S_A} \text{ mod }p$ und $T_M=g^{S_M \cdot S_B} \text{ mod }p$, jedoch ist es für den Angreifer möglich, unter Kenntnis
+unterschiedliche Schlüssel $K_1=T_M^{S_A}=g^{S_M \cdot S_A} \text{ mod }p$ und $T_M^{S_B}=g^{S_M \cdot S_B} \text{ mod }p$, jedoch ist es für den Angreifer möglich, unter Kenntnis
 von $S_M$, $K_1$ und $K_2$ zu berechnen.
 \end{description}
 \end{subexercise}
