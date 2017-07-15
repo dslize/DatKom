@@ -25,18 +25,30 @@
 
 \begin{exercise}{6}
 \begin{subexercise}
-
+\begin{center}
+\includegraphics[scale=0.8]{1a.jpg}
+\end{center}
 \end{subexercise}
 \begin{subexercise}
 \begin{description}
 \item[i)] \ \\
-
+Da es keine Übertragungsfehler gibt, wächst das \textbf{cwnd} bei \textbf{ssthresh}=32 kByte wie folgt:
+\begin{center}
+\begin{tabular}{c||*{7}{c|}c}
+Übertragungsschritt & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8\\
+\hline
+\textbf{cwnd} & 1 & 2 & 4 & 8 & 16 & 32 & 33 & 34\\
+\end{tabular}
+\end{center}
+Betrachtet man nur die Restriktionen des \textbf{cwnd}, hätte man so insgesamt 130 kByte übertragen können. Das anfängliche \textbf{rwnd} beträgt allerdings nur 128 kByte, sodass, falls in der Zwischenzeit nichts aus dem Buffer ausgelesen wird, auch nur 128 kByte übertragen werden können. Werden 1 oder 2 kByte gelesen, so können 129 bzw. 130 kByte übertragen werden.
 \item[ii)] \ \\
+Die Übertragungsrate hängt davon ab, wie schnell die Daten beim Empfänger aus dem Buffer gelesen werden. Da keine Übertragungsfehler auftreten, kann mit genügend Zeit das \textbf{cwnd} bis auf 128 oder mehr steigen, es können also in einem Schritt 128 kByte gesendet werden. Wenn wir davon ausgehen, dass eingehende Segmente sofort aus dem Buffer gelesen werden, bevor das nächste Segment eintrifft, so werden sie jeweils mit einer Restgröße des Buffers von 127 kByte bestätigt, sodass in jedem Schritt (pro 40ms) 127 kByte gesendet werden können. Dies ergibt sich zu 3175 kByte/s.
 
+Geht man hingegen davon aus, dass der Buffer immer nur zwischen zwei Übertragungsschritten gelesen wird, so lassen sich maximal 128 kByte alle zwei Schritte übertragen, mit einem Schritt dazwischen, in dem aufgrund des zuletzt als voll bekannten Buffers nicht gesendet wird (außer eventuell 1 Segment aufgrund des Persistence Timers, aber dies würde dann das Fenster im nächsten Schritt auch um 1 verkleinern). So erreicht man 128 kByte pro 80ms, welches sich zu 1,6 MByte/s ergibt. Dies ist äquivalent zu einer beliebigen Aufteilung der 128 kByte auf zwei Schritte, zwischen denen jeweils der Buffer komplett ausgelesen wird, z.B. 2 * 64 kByte.
 \end{description}
 \end{subexercise}
 \begin{subexercise}
-
+Die Idee der DUP-ACKs ist, auszugleichen, dass Pakete nicht garantiert in der richtigen Reihenfolge ankommen, da TCP mit IP arbeitet. Wenn man also direkt auf das erste DUP-ACK reagieren würde, welches gesendet wird, wenn ein Paket mit falscher Sequenznummer ankommt, würde man die Übertragung wiederholen, sobald ein Paket nicht in der richtigen Reihenfolge ankommt, also gerade nicht das, was man erreichen will. Stattdessen erlaubt man bis zu zwei anderen Paketen, welche eigentlich nach dem nächsten erwarteten Paket liegen, vor diesem anzukommen, und erst beim dritten wird die Übertragung wiederholt. 
 \end{subexercise}
 \end{exercise}
 
